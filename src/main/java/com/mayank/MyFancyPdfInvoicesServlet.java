@@ -7,8 +7,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
+    ObjectMapper objectMapper = new ObjectMapper();
+    InvoiceService invoiceService = new InvoiceService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getRequestURI().equalsIgnoreCase("/")) {
@@ -23,7 +27,8 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             );
         } else if(req.getRequestURI().equalsIgnoreCase("/invoices")) {
             resp.setContentType("application/json; charset=UTF-8");
-            resp.getWriter().print("[]");
+            List<Invoice> invoices = invoiceService.findAll();
+            resp.getWriter().print(objectMapper.writeValueAsString(invoices));
         }
     }
 
@@ -33,11 +38,11 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             String userId = req.getParameter("user_id");
             Integer amount = Integer.valueOf(req.getParameter("amount"));
 
-            Invoice invoice = new InvoiceService().create(userId, amount);
+            Invoice invoice = invoiceService.create(userId, amount);
 
             resp.setContentType("application/json; charset=UTF-8");
 
-            String json = new ObjectMapper().writeValueAsString(invoice);
+            String json = objectMapper.writeValueAsString(invoice);
 
             resp.getWriter().print(json);
         } else {

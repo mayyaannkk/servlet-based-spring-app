@@ -1,8 +1,20 @@
 package com.mayank;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class InvoiceService {
 
+    List<Invoice> invoices = new CopyOnWriteArrayList<>();
+
+    public List<Invoice> findAll() {
+        return invoices;
+    }
+
     public Invoice create(String userId, Integer amount) {
-        return new Invoice(userId, amount, "http://www.africau.edu/images/default/sample.pdf");
+        Invoice invoice = new Invoice(userId, amount, "http://www.africau.edu/images/default/sample.pdf");
+        System.out.println(invoices);
+        invoices.add(invoice);
+        return invoice;
     }
 }
