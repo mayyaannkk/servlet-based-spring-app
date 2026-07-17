@@ -1,5 +1,7 @@
-package com.mayank;
+package com.mayank.myfancypdfinvoices.web;
 
+import com.mayank.myfancypdfinvoices.model.Invoice;
+import com.mayank.myfancypdfinvoices.service.InvoiceService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

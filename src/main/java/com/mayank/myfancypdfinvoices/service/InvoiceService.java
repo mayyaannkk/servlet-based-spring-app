@@ -1,4 +1,6 @@
-package com.mayank;
+package com.mayank.myfancypdfinvoices.service;
+
+import com.mayank.myfancypdfinvoices.model.Invoice;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

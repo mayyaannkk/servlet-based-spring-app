@@ -16,7 +16,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.mayank.ApplicationLauncher</mainClass>
+              <mainClass>com.mayank.myfancypdfinvoices.ApplicationLauncher</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -33,7 +33,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.mayank.ApplicationLauncher</mainClass>
+                  <mainClass>com.mayank.myfancypdfinvoices.ApplicationLauncher</mainClass>
                 </transformer>
               </transformers>
             </configuration>
