@@ -1,5 +1,6 @@
 package com.mayank.myfancypdfinvoices.web;
 
+import com.mayank.myfancypdfinvoices.context.Application;
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.service.InvoiceService;
 import jakarta.servlet.ServletException;
@@ -12,8 +13,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
-    ObjectMapper objectMapper = new ObjectMapper();
-    InvoiceService invoiceService = new InvoiceService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,8 +28,8 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             );
         } else if(req.getRequestURI().equalsIgnoreCase("/invoices")) {
             resp.setContentType("application/json; charset=UTF-8");
-            List<Invoice> invoices = invoiceService.findAll();
-            resp.getWriter().print(objectMapper.writeValueAsString(invoices));
+            List<Invoice> invoices = Application.invoiceService.findAll();
+            resp.getWriter().print(Application.objectMapper.writeValueAsString(invoices));
         }
     }
 
@@ -40,11 +39,11 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             String userId = req.getParameter("user_id");
             Integer amount = Integer.valueOf(req.getParameter("amount"));
 
-            Invoice invoice = invoiceService.create(userId, amount);
+            Invoice invoice = Application.invoiceService.create(userId, amount);
 
             resp.setContentType("application/json; charset=UTF-8");
 
-            String json = objectMapper.writeValueAsString(invoice);
+            String json = Application.objectMapper.writeValueAsString(invoice);
 
             resp.getWriter().print(json);
         } else {
