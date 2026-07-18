@@ -25,6 +25,13 @@
             <artifactId>jackson-databind</artifactId>
             <version>3.1.4</version>
         </dependency>
+
+        <!-- Adding spring framework-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>7.0.8</version>
+        </dependency>
     </dependencies>
 
     <build>
