@@ -1,5 +1,6 @@
 package com.mayank.myfancypdfinvoices.web;
 
+import com.mayank.myfancypdfinvoices.dto.InvoiceDto;
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.service.InvoiceService;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,8 @@ public class MyFancyPdfInvoicesController {
         return invoiceService.findAll();
     }
 
-    @PostMapping("/invoices/{userId}/{amount}")
-    public Invoice createInvoice(@PathVariable("userId") String userId, @PathVariable("amount") Integer amount) {
-        return invoiceService.create(userId, amount);
+    @PostMapping("/invoices")
+    public Invoice createInvoice(@RequestBody InvoiceDto invoiceDto) {
+        return invoiceService.create(invoiceDto.getUserId(), invoiceDto.getAmount());
     }
 }
