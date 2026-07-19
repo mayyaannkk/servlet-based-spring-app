@@ -43,6 +43,7 @@ public class InvoiceService {
     public Invoice create(String userId, Integer amount) {
         User user = userService.findById(userId);
         if(user == null) {
+            System.out.println("No user exists");
             throw new IllegalStateException();
         }
 

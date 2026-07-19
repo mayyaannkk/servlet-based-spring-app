@@ -3,6 +3,8 @@ package com.mayank.myfancypdfinvoices.web;
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.service.InvoiceService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,5 +22,10 @@ public class MyFancyPdfInvoicesController {
     // @RequestMapping(value = "/invoices", method = RequestMethod.GET)
     public List<Invoice> invoices() {
         return invoiceService.findAll();
+    }
+
+    @PostMapping("/invoices")
+    public Invoice createInvoice(@RequestParam("user_id") String userId, @RequestParam("amount") Integer amount) {
+        return invoiceService.create(userId, amount);
     }
 }
