@@ -3,7 +3,6 @@ package com.mayank.myfancypdfinvoices.web;
 import com.mayank.myfancypdfinvoices.context.MyFancyPdfInvoicesApplicationConfiguration;
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.service.InvoiceService;
-import com.mayank.myfancypdfinvoices.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import java.util.List;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
 
-    private UserService userService;
     private InvoiceService invoiceService;
     private ObjectMapper objectMapper;
 
@@ -24,7 +22,6 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyFancyPdfInvoicesApplicationConfiguration.class);
-        userService = context.getBean(UserService.class);
         invoiceService = context.getBean(InvoiceService.class);
         objectMapper = context.getBean(ObjectMapper.class);
     }
