@@ -2,6 +2,8 @@ package com.mayank.myfancypdfinvoices.service;
 
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.model.User;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +18,18 @@ public class InvoiceService {
 
     public InvoiceService(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Fetching PDF Template from S3...");
+        // TODO download from s3 and save locally
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        System.out.println("Deleting downloaded templates...");
+        // TODO actual deletion of PDFs
     }
 
     public List<Invoice> findAll() {
