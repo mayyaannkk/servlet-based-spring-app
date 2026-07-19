@@ -1,7 +1,6 @@
 package com.mayank.myfancypdfinvoices;
 
 import com.mayank.myfancypdfinvoices.context.MyFancyPdfInvoicesApplicationConfiguration;
-import com.mayank.myfancypdfinvoices.web.MyFancyPdfInvoicesServlet;
 import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
