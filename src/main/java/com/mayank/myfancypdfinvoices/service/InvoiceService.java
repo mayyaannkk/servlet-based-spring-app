@@ -4,6 +4,7 @@ import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.model.User;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,8 +17,11 @@ public class InvoiceService {
 
     List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
-    public InvoiceService(UserService userService) {
+    private final String cdnUrl;
+
+    public InvoiceService(UserService userService, @Value("${cdn.url}") String cdnUrl) {
         this.userService = userService;
+        this.cdnUrl = cdnUrl;
     }
 
     @PostConstruct
@@ -42,7 +46,7 @@ public class InvoiceService {
             throw new IllegalStateException();
         }
 
-        Invoice invoice = new Invoice(userId, amount, "http://www.africau.edu/images/default/sample.pdf");
+        Invoice invoice = new Invoice(userId, amount, cdnUrl + "/images/default/sample.pdf");
         System.out.println(invoices);
         invoices.add(invoice);
         return invoice;
