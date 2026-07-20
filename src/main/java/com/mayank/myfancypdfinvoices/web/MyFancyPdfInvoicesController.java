@@ -3,11 +3,14 @@ package com.mayank.myfancypdfinvoices.web;
 import com.mayank.myfancypdfinvoices.dto.InvoiceDto;
 import com.mayank.myfancypdfinvoices.model.Invoice;
 import com.mayank.myfancypdfinvoices.service.InvoiceService;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Validated
 public class MyFancyPdfInvoicesController {
 
     private final InvoiceService invoiceService;
@@ -23,7 +26,7 @@ public class MyFancyPdfInvoicesController {
     }
 
     @PostMapping("/invoices")
-    public Invoice createInvoice(@RequestBody InvoiceDto invoiceDto) {
+    public Invoice createInvoice(@RequestBody @Valid InvoiceDto invoiceDto) {
         return invoiceService.create(invoiceDto.getUserId(), invoiceDto.getAmount());
     }
 }
